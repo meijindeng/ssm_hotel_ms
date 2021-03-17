@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--接口路径-->
+<mapper namespace="com.dmj.dao.MenuMapper">
+
+    <!-- 查询所有菜单列表（使用注解不好维护） -->
+    <select id="findMenuList" resultType="com.dmj.entity.Menu">
+        select * from sys_menu
+    </select>
+
+
+<!--    <select id="findMenuIdListByRoleId" resultType="int">-->
+<!--        select mid from sys_role_menu where rid = #{roleId}-->
+<!--    </select>-->
+
+<!--    <select id="findMenuByMenuId" resultType="com.dmj.entity.Menu">-->
+<!--        select * from sys_menu where id in-->
+<!--        <foreach collection="list" item="menuIds" open="(" separator="," close=")">-->
+<!--            #{menuIds}-->
+<!--        </foreach>-->
+<!--    </select>-->
+
+
+<!--    <select id="findMenuListByPage" resultType="com.dmj.entity.Menu">-->
+<!--        select * from sys_menu-->
+<!--        <where>-->
+<!--            <if test="id!=null">-->
+<!--                and id = #{id} or pid = #{id}-->
+<!--            </if>-->
+<!--        </where>-->
+<!--        order by id-->
+<!--    </select>-->
+
+<!--    <insert id="addMenu">-->
+<!--        insert into sys_menu (pid,title,href,spread,target,icon)-->
+<!--        values(#{pid},#{title},#{href},#{spread},#{target},#{icon})-->
+<!--    </insert>-->
+
+<!--    <update id="updateMenu">-->
+<!--        update sys_menu-->
+<!--        <set>-->
+<!--            <if test="pid!=null">-->
+<!--                pid = #{pid},-->
+<!--            </if>-->
+<!--            <if test="spread!=null">-->
+<!--                spread = #{spread},-->
+<!--            </if>-->
+<!--            <if test="title!=null and title!=''">-->
+<!--                title = #{title},-->
+<!--            </if>-->
+<!--            <if test="href!=null and href!=''">-->
+<!--                href = #{href},-->
+<!--            </if>-->
+<!--            <if test="target!=null and target!=''">-->
+<!--                target = #{target},-->
+<!--            </if>-->
+<!--            <if test="icon!=null and icon!=''">-->
+<!--                icon = #{icon},-->
+<!--            </if>-->
+<!--        </set>-->
+<!--        where id = #{id}-->
+<!--    </update>-->
+
+<!--    <delete id="deleteById">-->
+<!--        delete from sys_menu where id = #{id}-->
+<!--    </delete>-->
+
+<!--    <select id="getMenuCountByMenuId" resultType="int">-->
+<!--        select count(1) from sys_menu where pid = #{id}-->
+<!--    </select>-->
+
+<!--    <select id="findMenuListByEmployeeId" resultType="com.dmj.entity.Menu">-->
+<!--        select distinct t1.* from sys_menu t1-->
+<!--        inner join sys_role_menu t2 on t2.`mid` = t1.`id`-->
+<!--        inner join sys_role_employee t3 on t3.`rid` = t2.`rid`-->
+<!--        where t3.`eid` = #{employeeId}-->
+<!--    </select>-->
+
+
+</mapper>

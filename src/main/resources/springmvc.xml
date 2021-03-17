@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/mvc
+           http://www.springframework.org/schema/mvc/spring-mvc.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+    <!-- 加载控制器所在的包 -->
+    <context:component-scan base-package="com.dmj.controller"/>
+
+    <!-- 配置视图解析器 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!-- 视图前缀（页面在哪个目录下） -->
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <!-- 视图后缀(页面的后缀名是什么) -->
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!-- 加载静态资源 -->
+    <mvc:resources mapping="/statics/**" location="/statics/"/>
+
+    <!-- 开启注解支持 -->
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <!-- 配置编码字符集 -->
+            <!-- 配置响应编码字符集 -->
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/html;charset=UTF-8</value>
+                        <value>application/json;charset=UTF-8</value>
+                        <value>text/plain;charset=UTF-8</value>
+                        <value>application/xml;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+
+            <!-- 配置Jackson消息转换器 -->
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="objectMapper">
+                    <bean class="com.fasterxml.jackson.databind.ObjectMapper">
+                        <!-- 格式化日期 -->
+                        <property name="dateFormat">
+                            <bean class="java.text.SimpleDateFormat">
+                                <constructor-arg type="java.lang.String" value="yyyy-MM-dd" />
+                            </bean>
+                        </property>
+                    </bean>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+
+    <!-- 配置文件解析器对象，要求id名称必须是multipartResolver -->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 设置文件上传限制大小为10M -->
+        <property name="maxUploadSize" value="10485760"/>
+    </bean>
+
+
+
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!-- 拦截所有以/admin/开头的访问路径 -->
+            <mvc:mapping path="/admin/**"/>
+            <!-- 排除员工登录的访问路径 -->
+            <mvc:exclude-mapping path="/admin/employee/login"/>
+            <!--登录也不能拦截-->
+            <mvc:exclude-mapping path="/admin/login.html"/>
+            <!-- 注入拦截器 -->
+            <bean class="com.dmj.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+</beans>

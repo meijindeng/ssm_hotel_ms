@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dmj.dao.EmployeeMapper">
+    <!--根据登录账号查询员工信息-->
+    <select id="findEmployeeByLoginName" resultType="com.dmj.entity.Employee">
+        SELECT * FROM sys_employee WHERE loginName = #{loginName};
+    </select>
+
+    <!-- 根据部门编号查询该部门下的员工数量-->
+    <select id="getEmployeeCountByDeptId" resultType="int">
+        select count(1) from sys_employee where deptId = #{deptId}
+    </select>
+
+</mapper>

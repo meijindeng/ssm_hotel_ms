@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/tx
+           http://www.springframework.org/schema/tx/spring-tx.xsd
+           http://www.springframework.org/schema/aop
+		   http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- 扫描注解所在的包 -->
+    <context:component-scan base-package="com.dmj.dao,com.dmj.service"/>
+
+
+    <!-- 引入database.properties属性文件 -->
+    <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+        <property name="location">
+            <value>classpath:database.properties</value>
+        </property>
+    </bean>
+
+
+    <!-- 配置数据源dataSource -->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <!--驱动-->
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <!--连接字符串-->
+        <property name="url" value="${jdbc.url}"/>
+        <!--数据库用户名-->
+        <property name="username" value="${jdbc.user}"/>
+        <!--数据库密码-->
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+    <!-- 配置SqlSessionFactoryBean -->
+    <bean id ="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--  引用数据源 -->
+        <property name="dataSource" ref="dataSource"/>
+        <!-- 加载MyBatis配置文件 -->
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <!-- 加载SQL映射文件 -->
+        <property name="mapperLocations" value="classpath:mapper/**/*.xml"/>
+    </bean>
+
+    <!-- 加载mapper所在的包 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!-- 扫描mapper接口所在的位置 -->
+        <property name="basePackage" value="com.dmj.dao"/>
+    </bean>
+
+    <!-- 定义事务管理器 -->
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!-- 开启注解式事务 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+</beans>

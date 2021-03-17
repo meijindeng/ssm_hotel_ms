@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dmj.dao.RoleMapper">
+
+    <select id="findRoleList" resultType="com.dmj.entity.Role">
+        select * from sys_role
+        <where>
+            <if test="roleName!=null and roleName!=''">
+                and roleName like concat('%',#{roleName},'%')
+            </if>
+        </where>
+    </select>
+    <!--添加角色-->
+    <insert id="addRole">
+        insert into sys_role (roleName,roleDesc) values(#{roleName},#{roleDesc})
+    </insert>
+    <!--更改角色-->
+    <update id="updateRole">
+        update sys_role
+        <set>
+            <if test="roleName!=null and roleName!=''">
+                roleName = #{roleName},
+            </if>
+            <if test="roleDesc!=null and roleDesc!=''">
+                roleDesc = #{roleDesc},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+    <!--删除角色-->
+    <delete id="deleteById">
+        delete from sys_role where id = #{id}
+    </delete>
+
+<!--    <select id="findRoleListByMap" resultType="map">-->
+<!--        select * from sys_role-->
+<!--    </select>-->
+
+<!--    <select id="findEmployeeRoleByEmployeeId" resultType="int">-->
+<!--        select rid from sys_role_employee where eid = #{employeeId}-->
+<!--    </select>-->
+
+</mapper>
