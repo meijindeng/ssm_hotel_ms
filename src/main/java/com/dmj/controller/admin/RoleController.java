@@ -92,24 +92,24 @@ public class RoleController {
         //将map集合以JSON格式返回
         return JSON.toJSONString(map);
     }
-//
-//    /**
-//     * 检查该角色下是否存在员工信息
-//     * @param id
-//     * @return
-//     */
-//    @RequestMapping("/checkRoleHasEmployee")
-//    public String checkRoleHasEmployee(Integer id){
-//        Map<String,Object> map = new HashMap<String,Object>();
-//        //调用根据角色编号查询员工数量的方法
-//        if(employeeService.getEmployeeCountByRoleId(id)>0){
-//            map.put(SystemConstant.EXIST,true);//存在
-//            map.put(SystemConstant.MESSAGE,"该角色存在员工信息，无法删除");
-//        }else{
-//            map.put(SystemConstant.EXIST,false);//不存在
-//        }
-//        return JSON.toJSONString(map);
-//    }
+
+    /**
+     * 检查该角色下是否存在员工信息
+     * @param id
+     * @return
+     */
+    @RequestMapping("/checkRoleHasEmployee")
+    public String checkRoleHasEmployee(Integer id){
+        Map<String,Object> map = new HashMap<String,Object>();
+        //调用根据角色编号查询员工数量的方法
+        if(employeeService.getEmployeeCountByRoleId(id)>0){
+            map.put(SystemConstant.EXIST,true);//存在
+            map.put(SystemConstant.MESSAGE,"该角色存在员工信息，无法删除");
+        }else{
+            map.put(SystemConstant.EXIST,false);//不存在
+        }
+        return JSON.toJSONString(map);
+    }
 
 
     /**
