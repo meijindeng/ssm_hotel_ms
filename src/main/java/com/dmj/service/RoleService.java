@@ -41,7 +41,7 @@ public interface RoleService {
      * @param roleId
      * @return
      */
-    //int saveRoleMenu(String ids, Integer roleId);
+    int saveRoleMenu(String ids, Integer roleId);
 
     /**
      * 查询所有角色列表

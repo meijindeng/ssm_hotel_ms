@@ -10,17 +10,18 @@
         select * from sys_menu
     </select>
 
+    <!--根据角色ID查询该角色拥有的菜单ID集合-->
+    <select id="findMenuIdListByRoleId" resultType="int">
+        select mid from sys_role_menu where rid = #{roleId}
+    </select>
 
-<!--    <select id="findMenuIdListByRoleId" resultType="int">-->
-<!--        select mid from sys_role_menu where rid = #{roleId}-->
-<!--    </select>-->
-
-<!--    <select id="findMenuByMenuId" resultType="com.dmj.entity.Menu">-->
-<!--        select * from sys_menu where id in-->
-<!--        <foreach collection="list" item="menuIds" open="(" separator="," close=")">-->
-<!--            #{menuIds}-->
-<!--        </foreach>-->
-<!--    </select>-->
+    <!--根据菜单编号查询菜单信息-->
+    <select id="findMenuByMenuId" resultType="com.dmj.entity.Menu">
+        select * from sys_menu where id in
+        <foreach collection="list" item="menuIds" open="(" separator="," close=")">
+            #{menuIds}
+        </foreach>
+    </select>
 
 
 <!--    <select id="findMenuListByPage" resultType="com.dmj.entity.Menu">-->

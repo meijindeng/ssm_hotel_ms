@@ -131,85 +131,87 @@ public class RoleController {
         return JSON.toJSONString(map);
     }
 
-
-
-////    @RequestMapping("/initMenuTree")
-////    public DataGridViewResult initMenuTree(){
-////        //调用查询菜单列表的方法
-////        List<Menu> menuList = menuService.findMenuList();
-////        //调用根据角色ID查询该角色已经拥有的菜单ID的方法
-////        //创建集合保存树节点信息
-////        List<TreeNode> treeNodes = new ArrayList<TreeNode>();
-////        //循环遍历集合
-////        for (Menu menu : menuList) {
-////            //定义变量，表示菜单是否展开
-////            Boolean spread = (menu.getSpread()==null || menu.getSpread()==1) ? true : false;
-////            treeNodes.add(new TreeNode(menu.getId(),menu.getPid(),menu.getTitle(),spread));
-////        }
-////        //将数据返回到页面
-////        return new DataGridViewResult(treeNodes);
-////    }
-//
-//    /**
-//     * 根据角色ID查询该角色拥有的菜单
-//     * @param roleId        角色ID
-//     * @return
-//     */
+    /**
+     * 初始化菜单树
+     * @return
+     */
 //    @RequestMapping("/initMenuTree")
-//    public DataGridViewResult initMenuTree(Integer roleId){
+//    public DataGridViewResult initMenuTree(){
 //        //调用查询菜单列表的方法
 //        List<Menu> menuList = menuService.findMenuList();
 //        //调用根据角色ID查询该角色已经拥有的菜单ID的方法
-//        List<Integer> currentRoleMenuIds = menuService.findMenuIdListByRoleId(roleId);
-//        //定义集合，保存菜单信息
-//        List<Menu> currentMenus = new ArrayList<Menu>();
-//        //判断集合是否存在数据
-//        if(currentRoleMenuIds!=null && currentRoleMenuIds.size()>0){
-//            //根据菜单ID查询该菜单的信息
-//            currentMenus = menuService.findMenuByMenuId(currentRoleMenuIds);
-//        }
 //        //创建集合保存树节点信息
 //        List<TreeNode> treeNodes = new ArrayList<TreeNode>();
-//        //循环遍历所有菜单
+//        //循环遍历集合
 //        for (Menu menu : menuList) {
-//            //定义变量，标识是否选中
-//            String checkArr = "0";//0表示复选框不选中，1表示选中复选框
-//            //内层循环遍历当前角色拥有的权限菜单
-//            //循环比较的原因：比较两个集合中的数据是否有相同的，有相同的表示当前角色拥有这个权限
-//            for (Menu currentMenu : currentMenus) {
-//                //如果ID相等，表示当前角色有这个菜单，有这个菜单则需要将复选框选中
-//                if(menu.getId() == currentMenu.getId()){
-//                    checkArr ="1";//选中
-//                    break;
-//                }
-//            }
 //            //定义变量，表示菜单是否展开
 //            Boolean spread = (menu.getSpread()==null || menu.getSpread()==1) ? true : false;
-//            treeNodes.add(new TreeNode(menu.getId(),menu.getPid(),menu.getTitle(),spread,checkArr));
+//            treeNodes.add(new TreeNode(menu.getId(),menu.getPid(),menu.getTitle(),spread));
 //        }
 //        //将数据返回到页面
 //        return new DataGridViewResult(treeNodes);
 //    }
-//
-//
-//    /**
-//     * 分配菜单
-//     * @param ids
-//     * @param roleId
-//     * @return
-//     */
-//    @RequestMapping("/saveRoleMenu")
-//    public String saveRoleMenu(String ids,Integer roleId){
-//        Map<String,Object> map = new HashMap<String,Object>();
-//        //调用保存角色菜单关系的方法
-//        if(roleService.saveRoleMenu(ids,roleId)>0){
-//            map.put("message","菜单分配成功");
-//        }else{
-//            map.put("message","菜单分配失败");
-//        }
-//        return JSON.toJSONString(map);
-//    }
-//
+
+    /**
+     * 根据角色ID查询该角色拥有的菜单
+     * @param roleId        角色ID
+     * @return
+     */
+    @RequestMapping("/initMenuTree")
+    public DataGridViewResult initMenuTree(Integer roleId){
+        //调用查询菜单列表的方法
+        List<Menu> menuList = menuService.findMenuList();
+        //调用根据角色ID查询该角色已经拥有的菜单ID的方法
+        List<Integer> currentRoleMenuIds = menuService.findMenuIdListByRoleId(roleId);
+        //定义集合，保存菜单信息
+        List<Menu> currentMenus = new ArrayList<Menu>();
+        //判断集合是否存在数据
+        if(currentRoleMenuIds!=null && currentRoleMenuIds.size()>0){
+            //根据菜单ID查询该菜单的信息
+            currentMenus = menuService.findMenuByMenuId(currentRoleMenuIds);
+        }
+        //创建集合保存树节点信息
+        List<TreeNode> treeNodes = new ArrayList<TreeNode>();
+        //循环遍历所有菜单
+        for (Menu menu : menuList) {
+            //定义变量，标识是否选中
+            String checkArr = "0";//0表示复选框不选中，1表示选中复选框
+            //内层循环遍历当前角色拥有的权限菜单
+            //循环比较的原因：比较两个集合中的数据是否有相同的，有相同的表示当前角色拥有这个权限
+            for (Menu currentMenu : currentMenus) {
+                //如果ID相等，表示当前角色有这个菜单，有这个菜单则需要将复选框选中
+                if(menu.getId() == currentMenu.getId()){
+                    checkArr ="1";//选中
+                    break;
+                }
+            }
+            //定义变量，表示菜单是否展开
+            Boolean spread = (menu.getSpread()==null || menu.getSpread()==1) ? true : false;
+            treeNodes.add(new TreeNode(menu.getId(),menu.getPid(),menu.getTitle(),spread,checkArr));
+        }
+        //将数据返回到页面
+        return new DataGridViewResult(treeNodes);
+    }
+
+
+    /**
+     * 分配菜单
+     * @param ids
+     * @param roleId
+     * @return
+     */
+    @RequestMapping("/saveRoleMenu")
+    public String saveRoleMenu(String ids,Integer roleId){
+        Map<String,Object> map = new HashMap<String,Object>();
+        //调用保存角色菜单关系的方法
+        if(roleService.saveRoleMenu(ids,roleId)>0){
+            map.put("message","菜单分配成功");
+        }else{
+            map.put("message","菜单分配失败");
+        }
+        return JSON.toJSONString(map);
+    }
+
 //    /**
 //     * 根据员工ID查询该员工拥有的角色列表
 //     * @param id

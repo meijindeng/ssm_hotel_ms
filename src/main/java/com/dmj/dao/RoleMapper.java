@@ -43,16 +43,16 @@ public interface RoleMapper {
      * 删除原有关系
      * @param roleId
      */
-//    @Delete("delete from sys_role_menu where rid = #{roleId}")
-//    void deleteRoleMenu(Integer roleId);
+    @Delete("delete from sys_role_menu where rid = #{roleId}")
+    void deleteRoleMenu(Integer roleId);
 
     /**
      * 添加角色菜单关系数据
      * @param roleId
      * @param menuId
      */
-//    @Insert("insert into sys_role_menu(mid,rid) values(#{menuId},#{roleId})")
-//    void addRoleMenu(@Param("roleId") Integer roleId, @Param("menuId") String menuId);
+    @Insert("insert into sys_role_menu(mid,rid) values(#{menuId},#{roleId})")
+    void addRoleMenu(@Param("roleId") Integer roleId, @Param("menuId") String menuId);
 
     /**
      * 查询所有角色列表
