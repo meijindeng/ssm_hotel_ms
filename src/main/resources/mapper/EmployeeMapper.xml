@@ -20,4 +20,37 @@
         where re.`rid` = #{roleId}
     </select>
 
+    <!--查询员工列表-->
+    <select id="findEmployeeList" resultType="com.dmj.entity.Employee">
+        select e.*,d.deptName from sys_employee e
+        inner join sys_dept d on d.id = e.deptId
+        <where>
+            <if test="loginName!=null and loginName!=''">
+                and e.loginName like concat('%',#{loginName},'%')
+            </if>
+            <if test="name!=null and name!=''">
+                and e.name like concat('%',#{name},'%')
+            </if>
+            <if test="sex!=null">
+                and e.sex = #{sex}
+            </if>
+            <if test="deptId!=null">
+                and e.deptId = #{deptId}
+            </if>
+            <if test="startDate!=null">
+                <![CDATA[ and e.hireDate >= #{startDate} ]]>
+            </if>
+            <if test="endDate!=null">
+                <![CDATA[ and e.hireDate <= #{endDate} ]]>
+            </if>
+        </where>
+        order by e.id
+    </select>
+
+    <!--添加员工-->
+    <insert id="addEmployee">
+       insert into sys_employee (loginName,loginPwd,name,sex,deptId,hireDate,salt,createdBy,createDate,remark)
+       values(#{loginName},#{loginPwd},#{name},#{sex},#{deptId},#{hireDate},#{salt},#{createdBy},#{createDate},#{remark})
+    </insert>
+
 </mapper>

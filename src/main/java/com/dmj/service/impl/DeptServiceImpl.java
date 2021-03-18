@@ -48,7 +48,5 @@ public class DeptServiceImpl implements DeptService {
         return deptMapper.deleteById(id);
     }
 
-    public List<Dept> findDeptList() {
-        return deptMapper.findDeptList();
-    }
+    public List<Dept> findDeptList() { return deptMapper.findDeptList(); }
 }

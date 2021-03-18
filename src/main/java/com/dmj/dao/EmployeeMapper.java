@@ -1,6 +1,9 @@
 package com.dmj.dao;
 
 import com.dmj.entity.Employee;
+import com.dmj.vo.EmployeeVo;
+
+import java.util.List;
 
 public interface EmployeeMapper {
     /**
@@ -23,4 +26,18 @@ public interface EmployeeMapper {
      * @return
      */
     int getEmployeeCountByRoleId(Integer roleId);
+
+    /**
+     * 查询员工的列表
+     * @param employeeVo
+     * @return
+     */
+    List<Employee> findEmployeeList(EmployeeVo employeeVo);
+
+    /**
+     * 添加员工
+     * @param employee
+     * @return
+     */
+    int addEmployee(Employee employee);
 }

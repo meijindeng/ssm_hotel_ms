@@ -21,4 +21,8 @@ public interface SystemConstant {
      * 是否存在
      */
     String EXIST = "exist";
+    /**
+     * 默认密码123456
+     */
+    String DEFAULT_LOGIN_PWD = "123456";
 }

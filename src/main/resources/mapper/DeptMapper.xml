@@ -39,6 +39,7 @@
         delete from sys_dept where id = #{id}
     </delete>
 
+    <!--查询所有部门-->
     <select id="findDeptList" resultType="com.dmj.entity.Dept">
         select * from sys_dept
     </select>

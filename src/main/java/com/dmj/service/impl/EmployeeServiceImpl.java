@@ -5,10 +5,16 @@ import com.dmj.entity.Employee;
 import com.dmj.service.EmployeeService;
 import com.dmj.utils.PasswordUtil;
 import com.dmj.utils.SystemConstant;
+import com.dmj.utils.UUIDUtils;
+import com.dmj.vo.EmployeeVo;
+import javafx.scene.chart.PieChart;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+
+import java.util.List;
+import java.util.Date;
 
 @Service
 @Transactional  //声明事务
@@ -43,6 +49,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     public int getEmployeeCountByRoleId(Integer roleId) {
         return employeeMapper.getEmployeeCountByRoleId(roleId);
+    }
+
+    public List<Employee> findEmployeeList(EmployeeVo employeeVo) { return employeeMapper.findEmployeeList(employeeVo); }
+
+    public int addEmployee(Employee employee) {
+        employee.setSalt(UUIDUtils.randomUUID());//加密盐值
+        employee.setCreateDate(new Date());//创建时间
+        employee.setLoginPwd(PasswordUtil.md5(SystemConstant.DEFAULT_LOGIN_PWD,employee.getSalt(),SystemConstant.PASSWORD_COUNT));//密码
+        return employeeMapper.addEmployee(employee);
     }
 
 }

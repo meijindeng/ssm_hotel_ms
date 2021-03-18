@@ -1,19 +1,35 @@
 package com.dmj.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
+
 public class Employee {
     private Integer id;//员工编号
     private String loginName;//登录名称
-    private String loginPwd;//密码
-    private String name;//姓名
-    private String sex;//性别
-    private String deptId;//部门id
-    private String hireDate;//入职日期
+    private String loginPwd;//登录密码
+    private String name;//真实姓名
+    private Integer sex;//性别 1-男 2-女
+    private Integer deptId;//所属部门
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date hireDate;//入职日期
     private String salt;//加密盐值
-    private String createBy;//创建人
-    private String createDate;//创建时间
-    private String modifyBy;//修改人
-    private String modifyDate;//修改时间
+    private Integer createdBy;//创建人
+    private Date createDate;//创建时间
+    private Integer modifyBy;//修改人
+    private Date modifyDate;//修改时间
     private String remark;//备注
+
+    //部门名称
+    private String deptName;
+
+    public String getDeptName() {
+        return deptName;
+    }
+
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
+    }
 
     public Integer getId() {
         return id;
@@ -47,27 +63,27 @@ public class Employee {
         this.name = name;
     }
 
-    public String getSex() {
+    public Integer getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
+    public void setSex(Integer sex) {
         this.sex = sex;
     }
 
-    public String getDeptId() {
+    public Integer getDeptId() {
         return deptId;
     }
 
-    public void setDeptId(String deptId) {
+    public void setDeptId(Integer deptId) {
         this.deptId = deptId;
     }
 
-    public String getHireDate() {
+    public Date getHireDate() {
         return hireDate;
     }
 
-    public void setHireDate(String hireDate) {
+    public void setHireDate(Date hireDate) {
         this.hireDate = hireDate;
     }
 
@@ -79,35 +95,35 @@ public class Employee {
         this.salt = salt;
     }
 
-    public String getCreatedBy() {
-        return createBy;
+    public Integer getCreatedBy() {
+        return createdBy;
     }
 
-    public void setCreatedBy(String createdBy) {
-        this.createBy = createdBy;
+    public void setCreatedBy(Integer createdBy) {
+        this.createdBy = createdBy;
     }
 
-    public String getCreateDate() {
+    public Date getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(String createDate) {
+    public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 
-    public String getModifyBy() {
+    public Integer getModifyBy() {
         return modifyBy;
     }
 
-    public void setModifyBy(String modifyBy) {
+    public void setModifyBy(Integer modifyBy) {
         this.modifyBy = modifyBy;
     }
 
-    public String getModifyDate() {
+    public Date getModifyDate() {
         return modifyDate;
     }
 
-    public void setModifyDate(String modifyDate) {
+    public void setModifyDate(Date modifyDate) {
         this.modifyDate = modifyDate;
     }
 
