@@ -60,4 +60,45 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeMapper.addEmployee(employee);
     }
 
+    //修改员工
+    public int updateEmployee(Employee employee) {
+        //设置修改时间
+        employee.setModifyDate(new Date());
+        return employeeMapper.updateEmployee(employee);
+    }
+
+    //删除员工
+    public int deleteById(Integer id) {
+        //删除员工角色关系表的数据
+        employeeMapper.deleteEmployeeAndRole(id);
+        //调用删除员工的方法
+        return employeeMapper.deleteById(id);
+    }
+
+    //重置密码
+    public int resetPwd(int id) {
+        Employee employee = new Employee();
+        employee.setSalt(UUIDUtils.randomUUID());//必须先设置盐值，再给密码重新加密赋值
+        employee.setLoginPwd(PasswordUtil.md5(SystemConstant.DEFAULT_LOGIN_PWD,employee.getSalt(),SystemConstant.PASSWORD_COUNT));
+        employee.setId(id);//主键，员工编号
+        return employeeMapper.updateEmployee(employee);
+    }
+
+    public boolean saveEmployeeRole(String roleIds, Integer empId) {
+        try {
+            //先删除员工角色关系表的数据
+            employeeMapper.deleteEmployeeAndRole(empId);
+            //再保存员工角色关系
+            String [] idStr = roleIds.split(",");
+            for (int i = 0; i < idStr.length; i++) {
+                employeeMapper.addEmployeeRole(idStr[i],empId);
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+
 }

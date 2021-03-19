@@ -53,4 +53,49 @@
        values(#{loginName},#{loginPwd},#{name},#{sex},#{deptId},#{hireDate},#{salt},#{createdBy},#{createDate},#{remark})
     </insert>
 
+    <!--修改员工-->
+    <update id="updateEmployee">
+        update sys_employee
+        <set>
+            <if test="loginPwd!=null and loginPwd!=''">
+                loginPwd = #{loginPwd},
+            </if>
+            <if test="name!=null and name!=''">
+                name = #{name},
+            </if>
+            <if test="sex!=null">
+                sex = #{sex},
+            </if>
+            <if test="deptId!=null">
+                deptId = #{deptId},
+            </if>
+            <if test="hireDate!=null">
+                hireDate = #{hireDate},
+            </if>
+            <if test="salt!=null and salt!=''">
+                salt = #{salt},
+            </if>
+            <if test="remark!=null and remark!=''">
+                remark = #{remark},
+            </if>
+            <if test="modifyBy!=null">
+                modifyBy = #{modifyBy},
+            </if>
+            <if test="modifyDate!=null">
+                modifyDate = #{modifyDate},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--删除员工-->
+    <delete id="deleteById">
+        delete from sys_employee  where id = #{id}
+    </delete>
+
+    <!--删除员工与角色的关系-->
+    <delete id="deleteEmployeeAndRole">
+        delete from sys_role_employee where eid= #{eid}
+    </delete>
+
 </mapper>

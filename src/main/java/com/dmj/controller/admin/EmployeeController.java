@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -86,6 +87,86 @@ public class EmployeeController {
         }else{
             map.put(SystemConstant.SUCCESS, false);
             map.put(SystemConstant.MESSAGE, "添加失败");
+        }
+        return JSON.toJSONString(map);
+    }
+
+    /**
+     * 修改员工
+     * @param employee
+     * @param session
+     * @return
+     */
+    @RequestMapping("/updateEmployee")
+    public String updateEmployee(Employee employee,HttpSession session){
+        Map<String,Object> map = new HashMap<String,Object>();
+        //获取当前登录用户
+        Employee loginUser = (Employee) session.getAttribute(SystemConstant.LOGINUSER);
+        //设置修改人
+        employee.setModifyBy(loginUser.getId());
+        //调用新增员工的方法
+        if(employeeService.updateEmployee(employee)>0) {
+            map.put(SystemConstant.SUCCESS, true);
+            map.put(SystemConstant.MESSAGE, "修改成功");
+        }else{
+            map.put(SystemConstant.SUCCESS, false);
+            map.put(SystemConstant.MESSAGE, "修改失败");
+        }
+        return JSON.toJSONString(map);
+    }
+
+    /**
+     * 删除员工
+     * @param id
+     * @return
+     */
+    @RequestMapping("/deleteById")
+    public String deleteById(int id){
+        Map<String,Object> map = new HashMap<String,Object>();
+        //调用删除员工的方法
+        if(employeeService.deleteById(id)>0){
+            map.put(SystemConstant.SUCCESS, true);
+            map.put(SystemConstant.MESSAGE, "删除成功");
+        }else{
+            map.put(SystemConstant.SUCCESS, false);
+            map.put(SystemConstant.MESSAGE, "删除失败");
+        }
+        return JSON.toJSONString(map);
+    }
+
+    /**
+     * 重置密码
+     * @param id
+     * @return
+     */
+    @RequestMapping("/resetPwd")
+    public String resetPwd(int id){
+        Map<String,Object> map = new HashMap<String,Object>();
+        //调用重置密码的方法
+        if(employeeService.resetPwd(id)>0){
+            map.put(SystemConstant.SUCCESS, true);
+            map.put(SystemConstant.MESSAGE, "密码重置成功");
+        }else{
+            map.put(SystemConstant.SUCCESS, false);
+            map.put(SystemConstant.MESSAGE, "密码重置失败");
+        }
+        return JSON.toJSONString(map);
+    }
+
+    /**
+     * 分配角色
+     * @param roleIds
+     * @param empId
+     * @return
+     */
+    @RequestMapping("/saveEmployeeRole")
+    public String saveEmployeeRole(String roleIds,Integer empId){
+        Map<String,Object> map = new HashMap<String,Object>();
+        //调用保存员工角色关系的方法
+        if(employeeService.saveEmployeeRole(roleIds,empId)){
+            map.put(SystemConstant.MESSAGE,"角色分配成功");
+        }else{
+            map.put(SystemConstant.MESSAGE,"角色分配失败");
         }
         return JSON.toJSONString(map);
     }

@@ -34,12 +34,14 @@
         delete from sys_role where id = #{id}
     </delete>
 
-<!--    <select id="findRoleListByMap" resultType="map">-->
-<!--        select * from sys_role-->
-<!--    </select>-->
+    <!--查询所有角色列表（员工管理分配角色）-->
+    <select id="findRoleListByMap" resultType="map">
+        select * from sys_role
+    </select>
 
-<!--    <select id="findEmployeeRoleByEmployeeId" resultType="int">-->
-<!--        select rid from sys_role_employee where eid = #{employeeId}-->
-<!--    </select>-->
+    <!--根据员工ID查询该员工拥有的角色列表-->
+    <select id="findEmployeeRoleByEmployeeId" resultType="int">
+        select rid from sys_role_employee where eid = #{employeeId}
+    </select>
 
 </mapper>

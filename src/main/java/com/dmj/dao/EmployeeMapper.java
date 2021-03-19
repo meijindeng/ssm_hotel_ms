@@ -2,6 +2,8 @@ package com.dmj.dao;
 
 import com.dmj.entity.Employee;
 import com.dmj.vo.EmployeeVo;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -40,4 +42,32 @@ public interface EmployeeMapper {
      * @return
      */
     int addEmployee(Employee employee);
+
+    /**
+     * 修改员工
+     * @param employee
+     * @return
+     */
+    int updateEmployee(Employee employee);
+
+    /**
+     * 删除员工
+     * @param id
+     * @return
+     */
+    int deleteById(Integer id);
+
+    /**
+     * 删除员工与角色的关系
+     * @param id
+     */
+    void deleteEmployeeAndRole(Integer id);
+
+    /**
+     * 保存员工角色关系数据
+     * @param roleId
+     * @param empId
+     */
+    @Insert("insert into sys_role_employee (eid,rid) values(#{eid},#{rid})")
+    void addEmployeeRole(@Param("rid") String roleId, @Param("eid") Integer empId);
 }

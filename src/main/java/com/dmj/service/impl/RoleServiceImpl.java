@@ -58,12 +58,21 @@ public class RoleServiceImpl implements RoleService {
         }
         return 0;//失败
     }
-//
-//    public List<Map<String, Object>> findRoleListByMap() {
-//        return roleMapper.findRoleListByMap();
-//    }
-//
-//    public List<Integer> findEmployeeRoleByEmployeeId(Integer employeeId) {
-//        return roleMapper.findEmployeeRoleByEmployeeId(employeeId);
-//    }
+
+    /**
+     * （员工管理分配角色）
+     * @return
+     */
+    public List<Map<String, Object>> findRoleListByMap() {
+        return roleMapper.findRoleListByMap();
+    }
+
+    /**
+     * 根据员工ID查询该员工拥有的角色列表
+     * @param employeeId
+     * @return
+     */
+    public List<Integer> findEmployeeRoleByEmployeeId(Integer employeeId) {
+        return roleMapper.findEmployeeRoleByEmployeeId(employeeId);
+    }
 }

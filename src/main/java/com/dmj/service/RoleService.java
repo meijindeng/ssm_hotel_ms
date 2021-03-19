@@ -44,15 +44,15 @@ public interface RoleService {
     int saveRoleMenu(String ids, Integer roleId);
 
     /**
-     * 查询所有角色列表
+     * 查询所有角色列表（员工管理分配角色）
      * @return
      */
-   // List<Map<String,Object>> findRoleListByMap();
+    List<Map<String,Object>> findRoleListByMap();
 
     /**
      * 根据员工ID查询该员工拥有的角色列表
      * @param employeeId
      * @return
      */
-    //List<Integer> findEmployeeRoleByEmployeeId(Integer employeeId);
+    List<Integer> findEmployeeRoleByEmployeeId(Integer employeeId);
 }

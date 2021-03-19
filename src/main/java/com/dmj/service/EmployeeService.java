@@ -41,4 +41,33 @@ public interface EmployeeService {
      * @return
      */
     int addEmployee(Employee employee);
+
+    /**
+     * 修改员工
+     * @param employee
+     * @return
+     */
+    int updateEmployee(Employee employee);
+
+    /**
+     * 删除员工
+     * @param id
+     * @return
+     */
+    int deleteById(Integer id);
+
+    /**
+     * 重置密码
+     * @param id
+     * @return
+     */
+    int resetPwd(int id);
+
+    /**
+     * 保存员工角色关系
+     * @param roleIds
+     * @param empId
+     * @return
+     */
+    boolean saveEmployeeRole(String roleIds, Integer empId);
 }
