@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dmj.dao.UserMapper">
+
+    <!--添加用户-->
+    <insert id="addUser">
+        insert into t_user(loginName,password,realName,idCard,phone,email,status,createDate,salt)
+        values(#{loginName},#{password},#{realName},#{idCard},#{phone},#{email},#{status},#{createDate},#{salt})
+    </insert>
+
+    <!--根据用户名查询用户信息-->
+    <select id="findUserByName" resultType="com.dmj.entity.User">
+        select * from t_user where loginName = #{loginName}
+    </select>
+
+</mapper>
