@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dmj.dao.RoomMapper">
+
+    <select id="findRoomListByPage" resultType="com.dmj.entity.Room">
+        select t1.*,t2.`typeName`,t3.`name` as floorName,t2.price from t_room t1
+        inner join t_room_type t2 on t2.`id` = t1.`roomTypeId`
+        inner join t_floor t3 on t3.`id` = t1.`floorId`
+        <where>
+            <if test="roomnum!=null and roomnum!=''">
+                and t1.roomnum like concat('%',#{roomnum},'%')
+            </if>
+            <if test="roomtypeid!=null">
+                and t1.roomtypeid = #{roomtypeid}
+            </if>
+            <if test="floorid!=null">
+                and t1.floorid = #{floorid}
+            </if>
+            <if test="status!=null">
+                and t1.status = #{status}
+            </if>
+        </where>
+        order by id
+    </select>
+
+    <insert id="addRoom">
+        insert into t_room (photo,roomnum,roomtypeid,floorid,status,roomdesc,roomrequirement,remark)
+        values(#{photo},#{roomnum},#{roomtypeid},#{floorid},#{status},#{roomdesc},#{roomrequirement},#{remark})
+    </insert>
+
+    <update id="updateRoom">
+        update t_room
+        <set>
+            <if test="photo!=null and photo!=''">
+                photo = #{photo},
+            </if>
+            <if test="roomnum!=null and roomnum!=''">
+                roomNum = #{roomnum},
+            </if>
+            <if test="roomtypeid!=null">
+                roomtypeid = #{roomtypeid},
+            </if>
+            <if test="floorid!=null">
+                floorid = #{floorid},
+            </if>
+            <if test="status!=null">
+                status = #{status},
+            </if>
+            <if test="roomrequirement!=null and roomrequirement!=''">
+                roomrequirement = #{roomrequirement},
+            </if>
+            <if test="roomdesc!=null and roomdesc!=''">
+                roomdesc = #{roomdesc},
+            </if>
+            <if test="remark!=null and remark!=''">
+                remark = #{remark},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        delete from t_room where id = #{id}
+    </delete>
+
+    <select id="findRoomListByFloorId" resultType="com.dmj.entity.Room">
+        select t1.*,t2.typename,t2.price from t_room t1 inner join t_room_type t2 on t2.id = t1.roomTypeId
+    </select>
+
+    <select id="findById" resultType="com.dmj.entity.Room">
+        select t1.*,t2.`typeName`,t2.`price`,t3.`name` as floorName,t2.bedNum from t_room t1
+        inner join t_room_type t2 on t2.id = t1.roomTypeId
+        inner join t_floor t3 on t3.id = t1.floorId
+        where t1.id = #{id}
+    </select>
+
+</mapper>

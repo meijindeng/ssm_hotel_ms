@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dmj.dao.RoomTypeMapper">
+
+    <select id="findRoomTypeList" resultType="com.dmj.entity.RoomType">
+        select * from t_room_type
+        <where>
+            <if test="typename!=null and typename!=''">
+                and typename like concat('%',#{typename},'%')
+            </if>
+        </where>
+    </select>
+
+    <insert id="addRoomType">
+        insert into t_room_type (typename,photo,price,livenum,bednum,roomnum,reservednum,avilablenum,livednum,status,remark)
+        values(#{typename},#{photo},#{price},#{livenum},#{bednum},#{roomnum},#{reservednum},#{avilablenum},#{livednum},#{status},#{remark})
+    </insert>
+
+    <update id="updateRoomType">
+        update t_room_type
+        <set>
+            <if test="typename!=null and typename!=''">
+                typename = #{typename},
+            </if>
+            <if test="photo!=null and photo!=''">
+                photo = #{photo},
+            </if>
+            <if test="price!=null">
+                price = #{price},
+            </if>
+            <if test="livenum!=null">
+                livenum = #{livenum},
+            </if>
+            <if test="bednum!=null">
+                bednum = #{bednum},
+            </if>
+            <if test="roomnum!=null">
+                roomnum = #{roomnum},
+            </if>
+            <if test="reservednum!=null">
+                reservednum = #{reservednum},
+            </if>
+            <if test="avilablenum!=null">
+                avilablenum = #{avilablenum},
+            </if>
+            <if test="livednum!=null">
+                livednum = #{livednum},
+            </if>
+            <if test="status!=null">
+                status = #{status},
+            </if>
+            <if test="remark!=null and remark!=''">
+                remark = #{remark},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+</mapper>
