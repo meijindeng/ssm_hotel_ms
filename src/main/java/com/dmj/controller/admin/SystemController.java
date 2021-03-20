@@ -97,4 +97,13 @@ public class SystemController {
         return "admin/roomType/roomTypeManager";
     }
 
+    /**
+     * 去到房间管理页面
+     * @return
+     */
+    @RequestMapping("/toRoomManager")
+    public String toRoomManager(){
+        return "admin/room/roomManager";
+    }
+
 }

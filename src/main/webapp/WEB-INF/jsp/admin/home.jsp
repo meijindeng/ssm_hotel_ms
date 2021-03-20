@@ -167,7 +167,7 @@
         });
 
         $('.login-out').on("click", function () {
-            layer.confirm('确定要退出系统吗?', {icon: 3, title:'提示'}, function(index){
+            layer.confirm("确定要"+"<font color='red'>退出</font>"+"系统吗?", {icon: 3, title:'提示'}, function(index){
                 //do something
                 location.href="/admin/logout";
                 layer.close(index);
