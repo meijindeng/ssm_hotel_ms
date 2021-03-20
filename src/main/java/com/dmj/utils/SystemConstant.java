@@ -29,4 +29,9 @@ public interface SystemConstant {
      * 图片上传的地址
      */
     String IMAGE_UPLOAD_PATH = "F:/project/hotel/upload/";
+
+    /**
+     * 前台用户登录时保存key
+     */
+    String FRONT_LOGIN_USER = "currentUser";
 }
