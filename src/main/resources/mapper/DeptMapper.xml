@@ -15,7 +15,7 @@
 
     <!-- 添加部门 -->
     <insert id="addDept">
-        insert into sys_dept (deptnName,address,createDate,remark) values(#{deptName},#{address},#{createDate},#{remark})
+        insert into sys_dept (deptName,address,createDate,remark) values(#{deptName},#{address},#{createDate},#{remark})
     </insert>
    <!--修改部门-->
     <update id="updateDept">

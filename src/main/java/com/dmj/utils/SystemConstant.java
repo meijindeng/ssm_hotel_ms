@@ -25,4 +25,8 @@ public interface SystemConstant {
      * 默认密码123456
      */
     String DEFAULT_LOGIN_PWD = "123456";
+    /**
+     * 图片上传的地址
+     */
+    String IMAGE_UPLOAD_PATH = "F:/project/hotel/upload/";
 }

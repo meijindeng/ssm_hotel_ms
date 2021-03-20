@@ -23,61 +23,66 @@
         </foreach>
     </select>
 
+    <!--查询菜单列表-->
+    <select id="findMenuListByPage" resultType="com.dmj.entity.Menu">
+        select * from sys_menu
+        <where>
+            <if test="id!=null">
+                and id = #{id} or pid = #{id}
+            </if>
+        </where>
+        order by id
+    </select>
 
-<!--    <select id="findMenuListByPage" resultType="com.dmj.entity.Menu">-->
-<!--        select * from sys_menu-->
-<!--        <where>-->
-<!--            <if test="id!=null">-->
-<!--                and id = #{id} or pid = #{id}-->
-<!--            </if>-->
-<!--        </where>-->
-<!--        order by id-->
-<!--    </select>-->
+    <!--添加菜单-->
+    <insert id="addMenu">
+        insert into sys_menu (pid,title,href,spread,target,icon)
+        values(#{pid},#{title},#{href},#{spread},#{target},#{icon})
+    </insert>
 
-<!--    <insert id="addMenu">-->
-<!--        insert into sys_menu (pid,title,href,spread,target,icon)-->
-<!--        values(#{pid},#{title},#{href},#{spread},#{target},#{icon})-->
-<!--    </insert>-->
+    <!--修改菜单-->
+    <update id="updateMenu">
+        update sys_menu
+        <set>
+            <if test="pid!=null">
+                pid = #{pid},
+            </if>
+            <if test="spread!=null">
+                spread = #{spread},
+            </if>
+            <if test="title!=null and title!=''">
+                title = #{title},
+            </if>
+            <if test="href!=null and href!=''">
+                href = #{href},
+            </if>
+            <if test="target!=null and target!=''">
+                target = #{target},
+            </if>
+            <if test="icon!=null and icon!=''">
+                icon = #{icon},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
 
-<!--    <update id="updateMenu">-->
-<!--        update sys_menu-->
-<!--        <set>-->
-<!--            <if test="pid!=null">-->
-<!--                pid = #{pid},-->
-<!--            </if>-->
-<!--            <if test="spread!=null">-->
-<!--                spread = #{spread},-->
-<!--            </if>-->
-<!--            <if test="title!=null and title!=''">-->
-<!--                title = #{title},-->
-<!--            </if>-->
-<!--            <if test="href!=null and href!=''">-->
-<!--                href = #{href},-->
-<!--            </if>-->
-<!--            <if test="target!=null and target!=''">-->
-<!--                target = #{target},-->
-<!--            </if>-->
-<!--            <if test="icon!=null and icon!=''">-->
-<!--                icon = #{icon},-->
-<!--            </if>-->
-<!--        </set>-->
-<!--        where id = #{id}-->
-<!--    </update>-->
+    <!--删除菜单-->
+    <delete id="deleteById">
+        delete from sys_menu where id = #{id}
+    </delete>
 
-<!--    <delete id="deleteById">-->
-<!--        delete from sys_menu where id = #{id}-->
-<!--    </delete>-->
+    <!--根据菜单ID查询该菜单是否有子菜单-->
+    <select id="getMenuCountByMenuId" resultType="int">
+        select count(1) from sys_menu where pid = #{id}
+    </select>
 
-<!--    <select id="getMenuCountByMenuId" resultType="int">-->
-<!--        select count(1) from sys_menu where pid = #{id}-->
-<!--    </select>-->
-
-<!--    <select id="findMenuListByEmployeeId" resultType="com.dmj.entity.Menu">-->
-<!--        select distinct t1.* from sys_menu t1-->
-<!--        inner join sys_role_menu t2 on t2.`mid` = t1.`id`-->
-<!--        inner join sys_role_employee t3 on t3.`rid` = t2.`rid`-->
-<!--        where t3.`eid` = #{employeeId}-->
-<!--    </select>-->
+    <!--根据当前登录员工的角色查询菜单列表-->
+    <select id="findMenuListByEmployeeId" resultType="com.dmj.entity.Menu">
+        select distinct t1.* from sys_menu t1
+        inner join sys_role_menu t2 on t2.`mid` = t1.`id`
+        inner join sys_role_employee t3 on t3.`rid` = t2.`rid`
+        where t3.`eid` = #{employeeId}
+    </select>
 
 
 </mapper>

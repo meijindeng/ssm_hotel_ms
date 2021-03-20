@@ -76,7 +76,7 @@ public class MenuController {
     }
 
     /**
-     * 加载菜单管理页面的左侧导航树
+     * 加载菜单管理页面的左侧导航树（菜单管理）
      * @return
      */
     @RequestMapping("/loadMenuTree")

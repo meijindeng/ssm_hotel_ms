@@ -39,6 +39,7 @@ public class MenuServiceImpl implements MenuService {
         return menuMapper.findMenuListByPage(menuVo);
     }
 
+    //添加菜单
     public int addMenu(Menu menu) {
         //如果没有选择父级菜单，默认设置父级菜单为0
         if(menu.getPid()==null){
@@ -48,14 +49,17 @@ public class MenuServiceImpl implements MenuService {
         return menuMapper.addMenu(menu);
     }
 
+    //修改菜单
     public int updateMenu(Menu menu) {
         return menuMapper.updateMenu(menu);
     }
 
+    //删除菜单
     public int deleteById(int id) {
         return menuMapper.deleteById(id);
     }
 
+    //根据菜单ID查询该菜单是否有子菜单
     public int getMenuCountByMenuId(Integer id) {
         return menuMapper.getMenuCountByMenuId(id);
     }
