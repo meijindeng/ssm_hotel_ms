@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/statics/front/css/global(1).css" charset="utf-8">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/statics/front/css/store.css" charset="utf-8">
     <link rel="icon" href="${pageContext.request.contextPath}/statics/front/images/favicon.ico">
-    <title>酒店管理系统</title>
+    <title>前台注册-酒店管理系统</title>
 <body>
 <!-- 顶部start -->
 <div class="layui-header header header-store" style="background-color: #393D49;">

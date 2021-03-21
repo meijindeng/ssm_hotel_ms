@@ -65,10 +65,12 @@
         delete from t_room where id = #{id}
     </delete>
 
+    <!--根据楼层查询房间列表-->
     <select id="findRoomListByFloorId" resultType="com.dmj.entity.Room">
         select t1.*,t2.typename,t2.price from t_room t1 inner join t_room_type t2 on t2.id = t1.roomTypeId
     </select>
 
+    <!--查看房间详情-->
     <select id="findById" resultType="com.dmj.entity.Room">
         select t1.*,t2.`typeName`,t2.`price`,t3.`name` as floorName,t2.bedNum from t_room t1
         inner join t_room_type t2 on t2.id = t1.roomTypeId

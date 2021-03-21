@@ -18,7 +18,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/admin/room")
-public class RoomController {
+public class RoomAdminController {
 
     @Resource
     private RoomService roomService;
