@@ -205,7 +205,7 @@
             </div>
         </div>
         <div class="layui-form-item" style="margin-left: 80px">
-            <span style="color: red;font-size: 16px;">预订须知：请携带本人的身份证办理入住手续，办理入住需要在前台缴纳押金￥500</span>
+            <span style="color: red;font-size: 16px;">预订须知：请携带本人的身份证办理入住手续，办理入住需要在前台缴纳押金￥100</span>
         </div>
         <div class="layui-form-item layui-row layui-col-xs12">
             <div class="layui-input-block" style="text-align: center;">

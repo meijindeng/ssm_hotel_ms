@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dmj.dao.OrdersMapper">
+
+    <!-- 定义基础的ResultMap -->
+    <resultMap id="BaseResultMap" type="com.dmj.entity.Orders">
+        <id column="id" property="id" />
+        <result column="ordersNo"  property="ordersno" />
+        <result column="accountId" property="accountid" />
+        <result column="roomTypeId"  property="roomtypeid" />
+        <result column="roomId"  property="roomid" />
+        <result column="reservationName" property="reservationname" />
+        <result column="idCard" property="idcard" />
+        <result column="phone" property="phone" />
+        <result column="status"  property="status" />
+        <result column="reserveDate"  property="reservedate" />
+        <result column="arriveDate"  property="arrivedate" />
+        <result column="leaveDate" property="leavedate" />
+        <result column="reservePrice"  property="reserveprice" />
+        <result column="remark"  property="remark" />
+    </resultMap>
+
+    <resultMap id="ordersRoomAndTypeResultMap" type="com.dmj.entity.Orders" extends="BaseResultMap">
+        <!-- 配置订单与房间关系 -->
+        <association property="room" javaType="com.dmj.entity.Room">
+            <id column="id" property="id"/>
+            <result property="roomnum" column="roomnum"/>
+        </association>
+        <!-- 配置订单与房型关系 -->
+        <association property="roomType" javaType="com.dmj.entity.RoomType">
+            <id property="id" column="id"/>
+            <result property="typename" column="typename"/>
+        </association>
+    </resultMap>
+
+
+    <insert id="addOrders">
+        insert into t_orders (ordersno,accountid,roomtypeid,roomid,reservationname,idcard,phone,status,reservedate,
+        arrivedate,leavedate,reserveprice,remark)
+        values (#{ordersno},#{accountid},#{roomtypeid},#{roomid},#{reservationname},#{idcard},#{phone},
+        #{status},#{reservedate},#{arrivedate},#{leavedate},#{reserveprice},#{remark})
+    </insert>
+
+    <select id="findOrdersList" resultMap="ordersRoomAndTypeResultMap">
+        select o.*,r.`roomNum`,t.`typeName` from t_orders o
+        inner join t_room r on r.id = o.`roomId`
+        inner join t_room_type t on t.id = r.`roomTypeId`
+        <where>
+            <if test="reservationname!=null and reservationname!=''">
+                and o.reservationname like concat('%',#{reservationname},'%')
+            </if>
+            <if test="idcard!=null and idcard!=''">
+                and o.idcard like concat('%',#{idcard},'%')
+            </if>
+            <if test="phone!=null and phone!=''">
+                and o.phone like concat('%',#{phone},'%')
+            </if>
+            <if test="roomtypeid!=null">
+                and o.roomtypeid = #{roomtypeid}
+            </if>
+            <if test="status!=null">
+                and o.status = #{status}
+            </if>
+            <if test="startDate!=null">
+                <![CDATA[ and o.reservedate >= #{startDate} ]]>
+            </if>
+            <if test="endDate!=null">
+                <![CDATA[ and o.reservedate <= #{endDate }]]>
+            </if>
+        </where>
+    </select>
+
+    <update id="updateOrders" parameterType="com.dmj.entity.Orders">
+        update t_orders
+        <set>
+            <if test="ordersno != null">
+                ordersNo = #{ordersno,jdbcType=VARCHAR},
+            </if>
+            <if test="accountid != null">
+                accountId = #{accountid,jdbcType=BIGINT},
+            </if>
+            <if test="roomtypeid != null">
+                roomTypeId = #{roomtypeid,jdbcType=INTEGER},
+            </if>
+            <if test="roomid != null">
+                roomId = #{roomid,jdbcType=BIGINT},
+            </if>
+            <if test="reservationname != null">
+                reservationName = #{reservationname,jdbcType=VARCHAR},
+            </if>
+            <if test="idcard != null">
+                idCard = #{idcard,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="reservedate != null">
+                reserveDate = #{reservedate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="arrivedate != null">
+                arriveDate = #{arrivedate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="leavedate != null">
+                leaveDate = #{leavedate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="reserveprice != null">
+                reservePrice = #{reserveprice,jdbcType=DECIMAL},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+</mapper>
