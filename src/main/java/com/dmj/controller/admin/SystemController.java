@@ -115,4 +115,12 @@ public class SystemController {
         return "admin/orders/ordersManager";
     }
 
+    /**
+     * 去到入住管理页面
+     * @return
+     */
+    @RequestMapping("/toCheckinManager")
+    public String toCheckinManager(){
+        return "admin/checkin/checkinManager";
+    }
 }
