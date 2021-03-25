@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dmj.dao.ChartsMapper">
+
+    <select id="getTotalPriceByYear" resultType="map">
+        select year(createdate) as years,sum(payPrice) as totalPrice from t_checkin group by year(createdate)
+    </select>
+
+    <select id="getTotalPriceByYearOfMonth" resultType="double">
+        select sum(payprice) from t_checkin where date_format(createdate,'%Y%m') = concat(#{year},'01')
+        union all
+        select sum(payprice) from t_checkin where date_format(createdate,'%Y%m') = concat(#{year},'02')
+        union all
+        select sum(payprice) from t_checkin where date_format(createdate,'%Y%m') = concat(#{year},'03')
+        union all
+        select sum(payprice) from t_checkin where date_format(createdate,'%Y%m') = concat(#{year},'04')
+        union all
+        select sum(payprice) from t_checkin where date_format(createdate,'%Y%m') = concat(#{year},'05')
+        union all
+        select sum(payprice) from t_checkin where date_format(createdate,'%Y%m') = concat(#{year},'06')
+        union all
+        select sum(payprice) from t_checkin where date_format(createdate,'%Y%m') = concat(#{year},'07')
+        union all
+        select sum(payprice) from t_checkin where date_format(createdate,'%Y%m') = concat(#{year},'08')
+        union all
+        select sum(payprice) from t_checkin where date_format(createdate,'%Y%m') = concat(#{year},'09')
+        union all
+        select sum(payprice) from t_checkin where date_format(createdate,'%Y%m') = concat(#{year},'10')
+        union all
+        select sum(payprice) from t_checkin where date_format(createdate,'%Y%m') = concat(#{year},'11')
+        union all
+        select sum(payprice) from t_checkin where date_format(createdate,'%Y%m') = concat(#{year},'12')
+    </select>
+
+
+    <select id="getQuarterTotalPriceByYear" resultType="map">
+        select
+          t2.typeName ,
+          sum(if(quarter(t1.createDate)='1',t1.`payPrice`,0)) as Q1,
+          sum(if(quarter(t1.createDate)='2',t1.`payPrice`,0)) as Q2,
+          sum(if(quarter(t1.createDate)='3',t1.`payPrice`,0)) as Q3,
+          sum(if(quarter(t1.createDate)='4',t1.`payPrice`,0)) as Q4
+        from
+          t_checkin t1
+          inner join t_room_type t2 on t2.id = t1.roomtypeid
+        where date_format(t1.`createDate`,'%Y')  = #{year}
+        group by t2.typeName
+    </select>
+
+    <select id="getRoomTypeCountByYearAndMonth" resultType="com.dmj.vo.PieChartsVo">
+        select
+          t2.`typeName` as name,
+          count(t1.`id`)  as value
+        from
+          t_orders t1
+          inner join t_room_type t2 on t2.id = t1.roomTypeId
+          where date_format(t1.`reserveDate`,'%Y-%m') = #{year}
+        group by t2.typeName
+    </select>
+
+
+    <select id="getCurrentDateHotelByDate" resultType="com.dmj.vo.PieChartsVo">
+       select t2.`typeName` as name,count(t1.id) as value from t_checkin t1
+        inner join t_room_type t2 on t2.id = t1.`roomTypeId`
+        where date_format(t1.`createDate`,'%Y-%m-%d') = #{date}
+        group by t2.`typeName`
+    </select>
+
+</mapper>

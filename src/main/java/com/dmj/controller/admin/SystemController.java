@@ -123,4 +123,32 @@ public class SystemController {
     public String toCheckinManager(){
         return "admin/checkin/checkinManager";
     }
+
+    /**
+     * 去到月营业额报表统计分析界面
+     * @return
+     */
+    @RequestMapping("/toYearOfMonthCharts")
+    public String toYearOfMonthCharts(){
+        return "/admin/charts/yearOfMonthCharts";
+    }
+
+    /**
+     * 去到季度营业额报表统计分析界面
+     * @return
+     */
+    @RequestMapping("/toQuarterTotalPriceCharts")
+    public String toQuarterTotalPriceCharts(){
+        return "/admin/charts/quarterTotalPriceCharts";
+    }
+
+    /**
+     * 去到年度营业额报表统计分析界面
+     * @return
+     */
+    @RequestMapping("/toYearTotalPriceCharts")
+    public String toYearTotalPriceCharts(){
+        return "/admin/charts/yearTotalPriceCharts";
+    }
+
 }
