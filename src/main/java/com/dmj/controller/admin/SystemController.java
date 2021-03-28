@@ -13,6 +13,15 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/admin")
 
 public class SystemController {
+
+    /**
+     * 首页页面
+     * @return
+     */
+    @RequestMapping("/desktop")
+    public String desktop(){
+        return "admin/desktop/desktop";
+    }
     /**
      * 去到登录页面
      * @return
