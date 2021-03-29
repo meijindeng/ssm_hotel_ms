@@ -30,7 +30,7 @@
                 <a class="fly-case-active" data-type="toTopNav" href="JavaScript:void(0);">房间</a>
             </li>
             <li data-id="login" class="layui-nav-item layui-hide-xs ">
-                <a class="fly-case-active" data-type="toTopNav" href="JavaScript:void(0);">登入</a>
+                <a class="fly-case-active" data-type="toTopNav" href="JavaScript:void(0);">登录</a>
             </li>
             <li data-id="register" class="layui-nav-item layui-hide-xs ">
                 <a class="fly-case-active" data-type="toTopNav" href="JavaScript:void(0);">注册</a>
@@ -167,15 +167,7 @@
 
     <!-- 底部 -->
     <div class="fly-footer">
-        <p><a href="#">酒店系统</a> 2020 © <a href="#">test.cn</a></p>
-        <p>
-            友情链接
-            <a href="http://java.goodym.cn" target="_blank">java项目源码分享网</a>
-            <a href="http://www.goodym.cn/code/list/all/1/20.html" target="_blank">源码下载平台</a>
-            <a href="http://www.goodym.cn/market/list/all/1/20.html" target="_blank">源码市场</a>
-            <a href="http://www.goodym.cn/resumetemplate/list/1/20.html" target="_blank">简历制作</a>
-            <a href="http://www.goodym.cn/forum/list/0/1/20.html" target="_blank">社区论坛</a> </p>
-
+        <p><a href="#">酒店管理系统</a> 2021 © <a href="#">test.cn</a></p>
     </div>
 
 
