@@ -258,7 +258,7 @@
                 {field: 'idcard', minWidth: 120, title: '身份证号', align: "center"},
                 {field: 'phone', width: 150, title: '手机号', align: "center"},
                 {field: 'status', width: 100, title: '状态', align: "center",templet:function (d) {
-                        return d.status==1 ? "<font color='red'>入住中</font>" : "已离店";
+                        return d.status==1 ? "<font color='green'>入住中</font>" : "已离店";
                     }},
                 {field: 'payprice', width: 120, title: '支付金额', align: "center"},
                 {field: 'arrivedate', width: 170, title: '入住日期', align: "center"},
@@ -444,7 +444,7 @@
         function checkOut(data) {
             //判断当前记录的状态是否是入住中，如果是入住中，则提示用户是否退房，否则提示已离店，无需重复操作
             if(data.status==1){
-              layer.confirm("确定要办理退房吗?",{icon:3,title:"提示"},function (index) {
+              layer.confirm("确定要办理<font color='red'>退房</font>吗?",{icon:3,title:"提示"},function (index) {
                  $.post("/admin/checkout/addCheckout",{"checkInId":data.id},function(result){
                      if(result.success){
                          layer.alert(result.message,{icon:6});

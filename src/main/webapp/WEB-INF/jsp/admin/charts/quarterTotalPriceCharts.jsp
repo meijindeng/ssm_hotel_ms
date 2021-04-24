@@ -74,7 +74,6 @@
                 // 指定图表的配置项和数据
                 var option = {
                     title: {
-                        text: '季度营业额报表统计图',
                         left: 'center'
                     },
                     tooltip: {

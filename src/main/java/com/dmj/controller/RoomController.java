@@ -43,7 +43,7 @@ public class RoomController {
      * @param model
      * @return
      */
-    @RequestMapping("/list.html")
+    @RequestMapping("/hotelList.html")
     public String list(Model model){
         //调用查询所有房型列表的方法
         List<RoomType> roomTypeList = roomTypeService.findRoomTypeList(null);

@@ -21,15 +21,20 @@
         </a>
         <div class="layui-form component" lay-filter="LAY-site-header-component"></div>
         <ul class="layui-nav" id="layui-nav-userinfo">
-            <li data-id="index" class="layui-nav-item layui-hide-xs"><a class="fly-case-active" data-type="toTopNav"
-                                                                                   href="JavaScript:void(0);">首页</a></li>
-            <li data-id="room" class="layui-nav-item layui-hide-xs"><a class="fly-case-active"
-                                                                       data-type="toTopNav"
-                                                                       href="JavaScript:void(0);">房间</a></li>
-            <li data-id="login" class="layui-nav-item layui-hide-xs layui-this"><a class="fly-case-active" data-type="toTopNav"
-                                                                         href="/login.jsp">登录</a></li>
-            <li data-id="register" class="layui-nav-item layui-hide-xs "><a class="fly-case-active" data-type="toTopNav"
-                                                                            href="/register.jsp">注册</a></li>
+<%--            <li data-id="index" class="layui-nav-item layui-hide-xs">--%>
+<%--                <a class="fly-case-active" data-type="toTopNav"--%>
+<%--                   href="JavaScript:void(0);">首页</a>--%>
+<%--            </li>--%>
+<%--            <li data-id="room" class="layui-nav-item layui-hide-xs">--%>
+<%--                <a class="fly-case-active" data-type="toTopNav"--%>
+<%--                   href="JavaScript:void(0);">房间</a>--%>
+<%--            </li>--%>
+            <li data-id="login" class="layui-nav-item layui-hide-xs layui-this">
+                <a class="fly-case-active" data-type="toTopNav"
+                   href="/login.jsp">登录</a></li>
+            <li data-id="register" class="layui-nav-item layui-hide-xs ">
+                <a class="fly-case-active" data-type="toTopNav"
+                   href="/register.jsp">注册</a></li>
             <span class="layui-nav-bar" style="left: 560px; top: 55px; width: 0px; opacity: 0;"></span></ul>
     </div>
 </div>
@@ -99,7 +104,9 @@
 
 <!-- 底部 -->
 <div class="fly-footer">
-    <p><a href="#">酒店管理系统</a> 2021 © <a href="#">test.cn</a></p>
+    <p><a href="#">酒店管理系统</a> 2021 ©
+        <a href="https://gitee.com/meijindeng" target="_blank">gitee地址：https://gitee.com/meijindeng</a>
+    </p>
 </div>
 
 

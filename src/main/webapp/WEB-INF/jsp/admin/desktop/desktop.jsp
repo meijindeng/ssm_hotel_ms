@@ -5,15 +5,10 @@
 </head>
 <body>
 
-    <div>——欢迎来到酒店管理系统——</div>
+    <img src="/statics/images/shouye.jpg"style="position:absolute" width="100%" height="100%">
 
 </body>
-<style type="text/css">
-    div{
-        font-size:50px;
-        text-align: center;
-    }
-</style>
+
 </html>
 
 

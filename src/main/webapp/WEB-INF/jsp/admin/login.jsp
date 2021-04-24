@@ -10,7 +10,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
-    <link rel="icon" href="${pageContext.request.contextPath}/statics/layui/images/favicon.ico">
+<%--    <link rel="icon" href="${pageContext.request.contextPath}/statics/layui/images/favicon.ico">--%>
+    <link rel="icon" href="${pageContext.request.contextPath}/statics/front/images/favicon.ico">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/statics/layui/lib/layui-v2.5.5/css/layui.css" media="all">
     <!--[if lt IE 9]>
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -18,12 +19,12 @@
     <![endif]-->
     <style>
         html, body {width: 100%;height: 100%;overflow: hidden}
-        body {background: #1E9FFF;}
+        /*body {background: #1E9FFF;}*/
         body:after {content:'';background-repeat:no-repeat;background-size:cover;-webkit-filter:blur(3px);-moz-filter:blur(3px);-o-filter:blur(3px);-ms-filter:blur(3px);filter:blur(3px);position:absolute;top:0;left:0;right:0;bottom:0;z-index:-1;}
         .layui-container {width: 100%;height: 100%;overflow: hidden}
         .admin-login-background {width:360px;height:300px;position:absolute;left:50%;top:40%;margin-left:-180px;margin-top:-100px;}
         .logo-title {text-align:center;letter-spacing:2px;padding:14px 0;}
-        .logo-title h1 {color:#1E9FFF;font-size:25px;font-weight:bold;}
+        /*.logo-title h1 {color:#1E9FFF;font-size:25px;font-weight:bold;}*/
         .login-form {background-color:#fff;border:1px solid #fff;border-radius:3px;padding:14px 20px;box-shadow:0 0 8px #eeeeee;}
         .login-form .layui-form-item {position:relative;}
         .login-form .layui-form-item label {position:absolute;left:1px;top:1px;width:38px;line-height:36px;text-align:center;color:#d2d2d2;}
@@ -34,6 +35,9 @@
     </style>
 </head>
 <body>
+<div>
+    <img src="/statics/images/loginbg.jpg" style="position:absolute" height="100%" width="100%">
+</div>
 <div class="layui-container">
     <div class="admin-login-background">
         <div class="layui-form login-form">
@@ -67,7 +71,7 @@
 
         // 登录过期的时候，跳出ifram框架
         if (top.location != self.location) top.location = self.location;
-        // 粒子线条背景
+        //粒子线条背景
         $(document).ready(function(){
             $('.layui-container').particleground({
                 dotColor:'#7ec7fd',

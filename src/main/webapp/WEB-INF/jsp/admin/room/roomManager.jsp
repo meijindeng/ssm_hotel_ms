@@ -201,8 +201,16 @@
                 {field: 'roomnum', minWidth: 120, title: '房间编号', align: "center"},
                 {field: 'typeName', minWidth: 100, title: '房间类型', align: "center"},
                 {field: 'floorName', minWidth: 100, title: '所属楼层', align: "center"},
-                {field: 'statusStr', minWidth: 100, title: '房间状态', align: "center"},
-                {title: '操作', minWidth: 150, toolbar: '#currentTableBar', align: "center"}
+                {field: 'statusStr', minWidth: 100, title: '房间状态', align: "center",templet:function (d){
+                        if(d.status==1){
+                            return "<font color='red'>已预定</font>";
+                        }else if(d.status==2){
+                            return "<font color='#33a3dc'>已入住</font>";
+                        }else if(d.status==3){
+                            return "<font color='green'>可预订</font>";
+                        }
+                    }},
+                {title: '操作', minWidth: 150, toolbar: '#currentTableBar', align: "center"},
             ]],
             page: true,
             done: function (res, curr, count) {

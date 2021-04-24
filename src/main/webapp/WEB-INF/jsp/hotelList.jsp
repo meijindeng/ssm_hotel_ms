@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/statics/front/css/global(1).css" charset="utf-8">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/statics/front/css/store.css" charset="utf-8">
     <link rel="icon" href="${pageContext.request.contextPath}/statics/front/images/favicon.ico">
-    <title>房间分类-酒店管理系统</title>
+    <title>房间分类</title>
 <body>
 <!-- 顶部start -->
 <div class="layui-header header header-store" style="background-color: #393D49;">
@@ -22,16 +22,25 @@
         </a>
         <div class="layui-form component" lay-filter="LAY-site-header-component"></div>
         <ul class="layui-nav" id="layui-nav-userinfo">
-            <li data-id="index" class="layui-nav-item layui-hide-xs"><a class="fly-case-active" data-type="toTopNav"
-                                                                        href="JavaScript:void(0);">首页</a></li>
-            <li data-id="room" class="layui-nav-item layui-hide-xs layui-this"><a class="fly-case-active"
-                                                                                  data-type="toTopNav"
-                                                                                  href="JavaScript:void(0);">房间</a></li>
-            <li data-id="login" class="layui-nav-item layui-hide-xs "><a class="fly-case-active" data-type="toTopNav"
-                                                                         href="JavaScript:void(0);">登录</a></li>
-            <li data-id="register" class="layui-nav-item layui-hide-xs "><a class="fly-case-active" data-type="toTopNav"
-                                                                            href="JavaScript:void(0);">注册</a></li>
-            <span class="layui-nav-bar" style="left: 560px; top: 55px; width: 0px; opacity: 0;"></span></ul>
+            <li data-id="index" class="layui-nav-item layui-hide-xs">
+                <a class="fly-case-active" data-type="toTopNav"
+                   href="/home.html">首页</a>
+            </li>
+            <li data-id="room" class="layui-nav-item layui-hide-xs layui-this">
+                <a class="fly-case-active"
+                   data-type="toTopNav"
+                   href="/room/hotelList.html">房间</a>
+            </li>
+            <li data-id="login" class="layui-nav-item layui-hide-xs ">
+                <a class="fly-case-active" data-type="toTopNav"
+                   href="/login.jsp">登录</a>
+            </li>
+            <li data-id="register" class="layui-nav-item layui-hide-xs ">
+                <a class="fly-case-active" data-type="toTopNav"
+                   href="/register.jsp">注册</a>
+            </li>
+            <span class="layui-nav-bar" style="left: 560px; top: 55px; width: 0px; opacity: 0;"></span>
+        </ul>
     </div>
 </div>
 <!-- 顶部end -->
@@ -48,8 +57,11 @@
                     <button class="layui-btn layui-btn-shop" lay-submit="" lay-filter="searchHotelRoom" style="background-color: #009688"><i
                             class="layui-icon layui-icon-search"></i></button>
                 </div>
-                <div class="layui-container layui-hide-xs"><a href="#" class="topbar-logo"> <img
-                        src="${pageContext.request.contextPath}/statics/front/images/logo-1.png" alt="layui"> </a></div>
+                <div class="layui-container layui-hide-xs">
+                    <a href="#" class="topbar-logo">
+                        <img src="${pageContext.request.contextPath}/statics/front/images/logo-1.png" alt="layui">
+                    </a>
+                </div>
             </div>
         </form>
     </div>
@@ -61,21 +73,39 @@
 <div class="shoplist-filter">
     <div class="layui-container">
         <div class="layui-card">
-            <div class="layui-card-header"> <span class="layui-breadcrumb" style="visibility: visible;"> <a href="../hotel/index.html">酒店首页</a><span lay-separator="">/</span> <a href="../hotel/lists.html">类别</a><span lay-separator="">/</span> <a><cite>全部</cite></a>
-						</span> </div>
+            <div class="layui-card-header">
+                <span class="layui-breadcrumb" style="visibility: visible;">
+                    <a href="/home.html">酒店首页</a>
+                        <span lay-separator="">/</span>
+                    <a href="/room/hotelList.html">类别</a>
+                        <span lay-separator="">/</span>
+                    <a><cite>全部</cite></a>
+                </span>
+            </div>
             <div class="layui-card-body">
                 <div class="store-cat-item"> <span><i class="layui-icon layui-icon-shop-fenlei"></i>类别：</span>
                     <ul id="getAllRoomType">
                         <%-- 判断typeId房型ID值是否为空，为空表示当前点击的是全部这个超链接 --%>
-                        <li data-id="0" <c:if test="${typeId == null}">class="active"</c:if>> <a class="fly-case-active" href="/room/list.html" data-type="toRoomTypeListByLists">全部</a></li>
+                        <li data-id="0" <c:if test="${typeId == null}">class="active"</c:if>>
+                            <a class="fly-case-active" href="/room/hotelList.html" data-type="toRoomTypeListByLists">全部</a></li>
                         <c:forEach var="roomType" items="${roomTypeList}">
                             <%-- 判断typeId房型ID值是否与房型列表中ID值相等，相等则选择该超链接，设置字体颜色为绿色 --%>
-                            <li data-id="${roomType.id}" <c:if test="${typeId ==  roomType.id}">class="active"</c:if>> <a class="fly-case-active" href="/room/list/${roomType.id}" data-type="toRoomTypeListByLists">${roomType.typename}</a> </li>
+                            <li data-id="${roomType.id}"
+                                <c:if test="${typeId ==  roomType.id}">class="active"</c:if>>
+                                <a class="fly-case-active"
+                                   href="/room/list/${roomType.id}"
+                                   data-type="toRoomTypeListByLists">${roomType.typename}</a> </li>
                         </c:forEach>
                     </ul>
                 </div>
                 <div class="store-cat-item colorFilt"> <span><i class="layui-icon layui-icon-shop-color"></i>楼层：</span>
-                    <ul id="getAllFloor"><li style="background: #F2F2F2" title="全部"> <a class="fly-case-active" href="JavaScript:void(0);" data-type="toFloorListByLists"> <img src="images/all_bg.jpg"><i class="layui-icon layui-icon-ok"></i></a></li><li data-id="1" title="酒店1楼" class="bg1">
+                    <ul id="getAllFloor"><li style="background: #F2F2F2" title="全部">
+                        <a class="fly-case-active" href="JavaScript:void(0);" data-type="toFloorListByLists">
+                            <img src="${pageContext.request.contextPath}/statics/front/images/all_bg.jpg">
+                            <i class="layui-icon layui-icon-ok"></i>
+                        </a>
+                    </li>
+                        <li data-id="1" title="酒店1楼" class="bg1">
                         <a class="fly-case-active" href="JavaScript:void(0);" data-type="toFloorListByLists">
                         </a>
                     </li>
@@ -101,7 +131,7 @@
                         </li>
                     </ul>
                 </div>
-                <p class="filtEnd">筛选出<span id="filtTotal">${roomList.size()}</span>个</p>
+                <p class="filtEnd">筛选出<span id="filtTotal">${roomList.size()}</span>间房</p>
             </div>
         </div>
     </div>
@@ -141,7 +171,9 @@
 
 <!-- 底部 -->
 <div class="fly-footer">
-    <p><a href="#">酒店管理系统</a> 2021 © <a href="#">test.cn</a></p>
+    <p><a href="#">酒店管理系统</a> 2021 ©
+        <a href="https://gitee.com/meijindeng" target="_blank">gitee地址：https://gitee.com/meijindeng</a>
+    </p>
 </div>
 
 

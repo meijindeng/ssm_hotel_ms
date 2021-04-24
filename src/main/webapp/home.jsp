@@ -24,16 +24,20 @@
         <div class="layui-form component" lay-filter="LAY-site-header-component"></div>
         <ul class="layui-nav" id="layui-nav-userinfo">
             <li data-id="index" class="layui-nav-item layui-hide-xs layui-this">
-                <a class="fly-case-active" data-type="toTopNav" href="JavaScript:void(0);">首页</a>
+                <a class="fly-case-active" data-type="toTopNav"
+                   href="/home.html">首页</a>
             </li>
             <li data-id="room" class="layui-nav-item layui-hide-xs">
-                <a class="fly-case-active" data-type="toTopNav" href="JavaScript:void(0);">房间</a>
+                <a class="fly-case-active" data-type="toTopNav"
+                   href="/room/hotelList.html">房间</a>
             </li>
             <li data-id="login" class="layui-nav-item layui-hide-xs ">
-                <a class="fly-case-active" data-type="toTopNav" href="JavaScript:void(0);">登录</a>
+                <a class="fly-case-active" data-type="toTopNav"
+                   href="/login.jsp">登录</a>
             </li>
             <li data-id="register" class="layui-nav-item layui-hide-xs ">
-                <a class="fly-case-active" data-type="toTopNav" href="JavaScript:void(0);">注册</a>
+                <a class="fly-case-active" data-type="toTopNav"
+                   href="/register.jsp">注册</a>
             </li>
             <span class="layui-nav-bar" style="left: 560px; top: 55px; width: 0px; opacity: 0;"></span>
         </ul>
@@ -65,10 +69,13 @@
         <div class="layui-container layui-hide-xs">
             <div class="product-list">
                 <dl id="getIndexRoomType">
-                    <dt style="background-color: #009688"><a href="lists.html" target="_blank">房间分类</a></dt>
+                    <dt style="background-color: #009688">
+                        <a href="/room/hotelList.html">房间分类</a></dt>
                     <c:forEach var="roomType" items="${roomTypeList}">
                         <dd data-id="${roomType.id}">
-                            <a class="fly-case-active" href="/room/list/${roomType.id}" data-type="toRoomTypeList">${roomType.typename}</a>
+                            <a class="fly-case-active"
+                               href="/room/list/${roomType.id}"
+                               data-type="toRoomTypeList">${roomType.typename}</a>
                         </dd>
                     </c:forEach>
                 </dl>
@@ -132,12 +139,12 @@
 
             <c:forEach var="floor" items="${floorList}" varStatus="stauts">
                 <%-- 判断当前下标是否是偶数行，如果是偶数行，div背景颜色为白色 --%>
-                <c:if test="${stauts.index%2==0}">
-                    <div class="temp-hot">
+                <c:if test="${stauts.index%2==0}" >
+                    <div class="temp-hot" >
                 </c:if>
                 <%-- 判断当前下标是否是奇数行，如果是奇数行，div背景颜色为灰色 --%>
                 <c:if test="${stauts.index%2!=0}">
-                    <div class="temp-normal"  style="background-color: #f2f2f2">
+                    <div class="temp-normal" style="background-color: #f2f2f2">
                 </c:if>
 
                     <div class="layui-container">
@@ -146,10 +153,16 @@
                             <c:forEach var="room" items="${roomList}">
                                 <c:if test="${room.floorid == floor.id}">
                                     <div data-id="${room.id}" class="layui-col-xs6 layui-col-md3">
-                                        <a class="template store-list-box fly-case-active" href="/room/${room.id}.html" data-type="toRoomInfo">
+                                        <a class="template store-list-box fly-case-active"
+                                           href="/room/${room.id}.html" data-type="toRoomInfo">
                                             <img src="/hotel/show/${room.photo}" class="store-list-cover">
                                             <h2 class="layui-elip">${room.typeName}</h2>
-                                            <p class="price"> <span title="金额"> ￥${room.price} </span> <span title="房号" style="color:  #fff;background: #0e88cc;padding: 3px;text-align: center;border: 1px solid #4cffb3;font-size: 13px;"> NO.${room.roomnum} </span></p>
+                                            <p class="price">
+                                                <span title="金额"> ￥${room.price} </span>
+                                                <span title="房间号" style="color:  #fff;
+                                                background: #0e88cc;padding: 3px;text-align: center;border: 1px solid #4cffb3;
+                                                font-size: 13px;"> NO.${room.roomnum} </span>
+                                            </p>
                                         </a>
                                     </div>
                                 </c:if>
@@ -167,7 +180,9 @@
 
     <!-- 底部 -->
     <div class="fly-footer">
-        <p><a href="#">酒店管理系统</a> 2021 © <a href="#">test.cn</a></p>
+        <p><a href="#">酒店管理系统</a> 2021 ©
+            <a href="https://gitee.com/meijindeng" target="_blank">gitee地址：https://gitee.com/meijindeng</a>
+        </p>
     </div>
 
 

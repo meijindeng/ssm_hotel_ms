@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/statics/front/css/global(1).css" charset="utf-8">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/statics/front/css/store.css" charset="utf-8">
     <link rel="icon" href="${pageContext.request.contextPath}/statics/front/images/favicon.ico">
-    <title>房间详情-酒店管理系统</title>
+    <title>房间详情</title>
 <body>
 <!-- 顶部start -->
 <div class="layui-header header header-store" style="background-color: #393D49;">
@@ -22,15 +22,22 @@
         </a>
         <div class="layui-form component" lay-filter="LAY-site-header-component"></div>
         <ul class="layui-nav" id="layui-nav-userinfo">
-            <li data-id="index" class="layui-nav-item layui-hide-xs"><a class="fly-case-active" data-type="toTopNav"
-                                                                                   href="JavaScript:void(0);">首页</a></li>
-            <li data-id="room" class="layui-nav-item layui-hide-xs layui-this"><a class="fly-case-active"
-                                                                       data-type="toTopNav"
-                                                                       href="JavaScript:void(0);">房间</a></li>
-            <li data-id="login" class="layui-nav-item layui-hide-xs "><a class="fly-case-active" data-type="toTopNav"
-                                                                         href="JavaScript:void(0);">登录</a></li>
-            <li data-id="register" class="layui-nav-item layui-hide-xs "><a class="fly-case-active" data-type="toTopNav"
-                                                                            href="JavaScript:void(0);">注册</a></li>
+            <li data-id="index" class="layui-nav-item layui-hide-xs">
+                <a class="fly-case-active" data-type="toTopNav"
+                   href="/home.html">首页</a>
+            </li>
+            <li data-id="room" class="layui-nav-item layui-hide-xs layui-this">
+                <a class="fly-case-active" data-type="toTopNav"
+                   href="/room/hotelList.html">房间</a>
+            </li>
+            <li data-id="login" class="layui-nav-item layui-hide-xs ">
+                <a class="fly-case-active" data-type="toTopNav"
+                   href="/login.jsp">登录</a>
+            </li>
+            <li data-id="register" class="layui-nav-item layui-hide-xs ">
+                <a class="fly-case-active" data-type="toTopNav"
+                   href="/register.jsp">注册</a>
+            </li>
             <span class="layui-nav-bar" style="left: 560px; top: 55px; width: 0px; opacity: 0;"></span></ul>
     </div>
 </div>
@@ -62,15 +69,16 @@
     <div class="layui-card shopdata-intro">
         <div class="layui-card-header">
 				<span class="layui-breadcrumb layui-hide-xs" style="visibility: visible;">
-				<a href="../hotel/index.html">酒店首页</a><span lay-separator="">/</span>
-						           <a href="JavaScript:void(0);" id="floorNumber">酒店${room.floorName}</a><span lay-separator="">/</span>
-
-						 <a><cite>房间详情</cite></a> </span>
-
+				    <a href="/home.html">酒店首页</a><span lay-separator="">/</span>
+                    <a href="/home.html"
+                       id="floorNumber">酒店${room.floorName}</a><span lay-separator="">/</span>
+						 <a><cite>房间详情</cite></a>
+                </span>
         </div>
         <div class="layui-card-body layui-row">
             <div class="layui-col-md6">
-                <div class="intro-img photos"> <img id="coverImg" src="/hotel/show/${room.photo}" alt="产品封面" layer-index="0"> </div>
+                <div class="intro-img photos">
+                    <img id="coverImg" src="/hotel/show/${room.photo}" alt="产品封面" layer-index="0"> </div>
             </div>
             <div class="layui-col-md6">
                 <div class="intro-txt">
@@ -219,7 +227,9 @@
 
 <!-- 底部 -->
 <div class="fly-footer">
-    <p><a href="#">酒店管理系统</a> 2021 © <a href="#">test.cn</a></p>
+    <p><a href="#">酒店管理系统</a> 2021 ©
+        <a href="https://gitee.com/meijindeng" target="_blank">gitee地址：https://gitee.com/meijindeng</a>
+    </p>
 </div>
 
 

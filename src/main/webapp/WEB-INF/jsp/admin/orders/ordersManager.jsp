@@ -154,11 +154,11 @@
                 {field: 'phone', width: 150, title: '手机号', align: "center"},
                 {field: 'status', width: 80, title: '状态', align: "center",templet:function (d) {
                         if(d.status==1){
-                            return "待确认";
+                            return "<font color='red'>待确认</font>";
                         }else if(d.status==2){
-                            return "已确认";
+                            return "<font color='green'>已确认</font>";
                         }else if(d.status==3){
-                            return "已入住";
+                            return "<font color='#33a3dc'>已入住</font>";
                         }else{
                             return "已完成";
                         }
