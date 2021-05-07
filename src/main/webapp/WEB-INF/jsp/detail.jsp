@@ -70,7 +70,7 @@
         <div class="layui-card-header">
 				<span class="layui-breadcrumb layui-hide-xs" style="visibility: visible;">
 				    <a href="/home.html">酒店首页</a><span lay-separator="">/</span>
-                    <a href="/home.html"
+                    <a href="/room/hotelList.html"
                        id="floorNumber">酒店${room.floorName}</a><span lay-separator="">/</span>
 						 <a><cite>房间详情</cite></a>
                 </span>
@@ -90,7 +90,7 @@
                             <p class="reference"><span>床位数</span> <span id="bedType">${room.bedNum}张</span></p>
                             <p class="reference"><span>宽　带</span> <span id="broadband">免费wifi</span></p>
                             <p class="reference"><span>标准价</span> ￥<span id="standardPrice">${room.price}</span></p>
-                            <p class="activity"><span>会员价</span><strong class="price"><i>￥</i><span id="memberPrice">${room.price}</span></strong></p>
+                            <p class="activity"><span>会员价</span><strong class="price"><i>￥</i><span id="memberPrice">${room.price*0.88}</span></strong></p>
                             <p class="activity"><span>状&#12288;态</span>
                             <strong class="status">
 

@@ -43,19 +43,19 @@ public class Room {
 
     public String getStatusStr() {
         //判断状态是否为空
-//        if(status!=null){
-//            switch (status){
-//                case 1:
-//                    statusStr = "已预订";
-//                    break;
-//                case 2:
-//                    statusStr = "已入住";
-//                    break;
-//                case 3:
-//                    statusStr = "可预订";
-//                    break;
-//            }
-//        }
+        if(status!=null){
+            switch (status){
+                case 1:
+                    statusStr = "已预订";
+                    break;
+                case 2:
+                    statusStr = "已入住";
+                    break;
+                case 3:
+                    statusStr = "可预订";
+                    break;
+            }
+        }
         return statusStr;
 
     }
