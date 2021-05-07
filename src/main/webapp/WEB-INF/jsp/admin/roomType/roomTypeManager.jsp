@@ -173,8 +173,8 @@
                 {field: 'avilablenum', minWidth: 100, title: '可用房间数', align: "center"},
                 {field: 'reservednum', minWidth: 100, title: '已预订数', align: "center"},
                 {field: 'livednum', minWidth: 100, title: '已入住数', align: "center"},
-                {field: 'status', minWidth: 100, title: '状态', align: "center",templet:function (d) {
-                        return d.status == 1 ? "<font color='green'>可预订</font>" : "<font color='red'>房型已满</font>"
+                {field: 'status', minWidth: 100, title: '状态', align: "center",templet:function (data) {
+                        return data.status == 1 ? "<font color='green'>可预订</font>" : "<font color='red'>房型已满</font>"
                     }},
                 {field: 'remark', minWidth: 100, title: '备注', align: "center"},
                 {title: '操作', minWidth: 150, toolbar: '#currentTableBar', align: "center"}
@@ -308,6 +308,34 @@
             //禁止页面刷新
             return false;
         });
+
+
+        /**
+         * 删除房型
+         * @param data
+         */
+        function deleteById(data) {
+            //判断该房间是否能够删除(只有状态为可预订的才能删除)
+            if(data.status==1){
+                //提示是否删除
+                //提示用户是否删除该房间
+                layer.confirm("确定要删除[<font color='red'>"+data.typename+"</font>]房型吗？", {icon: 1, title:'提示'}, function(index){
+                    //发送ajax请求进行删除
+                    $.post("/admin/roomType/deleteById",{"id":data.id},
+                        function(result){
+                            if(result.success){
+                                //刷新数据表格
+                                tableIns.reload();
+                            }
+                            //提示
+                            layer.msg(result.message);
+                    },"json");
+                    layer.close(index);
+                });
+            }else{
+                 layer.msg("只能删除状态为[<font color='#ff4500'>可预订</font>]的房型！");
+            }
+        }
 
 
     });

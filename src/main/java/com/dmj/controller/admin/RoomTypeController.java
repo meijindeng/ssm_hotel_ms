@@ -87,6 +87,24 @@ public class RoomTypeController {
     }
 
     /**
+     * 删除房型
+     * @param id
+     * @return
+     */
+    @RequestMapping("/deleteById")
+    public String deleteById(Integer id){
+        Map<String,Object> map = new HashMap<String,Object>();
+        if(roomTypeService.deleteById(id)>0){
+            map.put(SystemConstant.SUCCESS,true);//成功
+            map.put(SystemConstant.MESSAGE,"删除成功");
+        }else{
+            map.put(SystemConstant.SUCCESS,false);//失败
+            map.put(SystemConstant.MESSAGE,"删除失败");
+        }
+        return JSON.toJSONString(map);
+    }
+
+    /**
      * 查询所有房间类型
      * @return
      */

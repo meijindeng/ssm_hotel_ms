@@ -26,4 +26,11 @@ public interface RoomTypeService {
      * @return
      */
     int updateRoomType(RoomType roomType);
+
+    /**
+     * 删除房型
+     * @param id
+     * @return
+     */
+    int deleteById(Integer id);
 }

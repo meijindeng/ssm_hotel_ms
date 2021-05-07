@@ -35,4 +35,11 @@ public interface RoomTypeMapper {
      */
     @Select("select * from t_room_type where id = #{id}")
     RoomType findById(Integer roomtypeid);
+
+    /**
+     * 删除房型
+     * @param id
+     * @return
+     */
+    int deleteById(int id);
 }

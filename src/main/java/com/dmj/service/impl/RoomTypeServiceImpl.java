@@ -40,4 +40,13 @@ public class RoomTypeServiceImpl implements RoomTypeService {
         roomType.setLivednum(0);//已入住房间数量
         return roomTypeMapper.updateRoomType(roomType);
     }
+
+    /**
+     * 删除房型
+     * @param id
+     * @return
+     */
+    public int deleteById(Integer id) {
+        return roomTypeMapper.deleteById(id);
+    }
 }

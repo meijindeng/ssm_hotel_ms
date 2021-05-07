@@ -58,4 +58,8 @@
         where id = #{id}
     </update>
 
+    <delete id="deleteById">
+        delete from t_room_type where id = #{id}
+    </delete>
+
 </mapper>
